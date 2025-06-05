@@ -135,10 +135,12 @@ const data = [
   },
 ];
 
+// Get books
 function getBooks() {
   return data; // returns all data inside the data object array
 }
 
+// Get book by id
 function getBook(id) {
   return data.find((d) => d.id === id); // this func searches entire array of books and checks if book by id exists in the array
 }
@@ -160,6 +162,7 @@ const newGenres = [...genres, "epic fantasy", "comedy"]; // Uses spread operator
 
 newGenres;
 
+// Spread operator
 const updatedBook = {
   ...book,
   // adding new property
@@ -170,6 +173,7 @@ const updatedBook = {
 
 updatedBook;
 
+// Template literal
 const summary = `${title}, a ${pages}-page long book, was written by ${author} and published in ${
   publicationDate.split("-")[0]
 }. The book has ${hasMovieAdaptation ? "" : "not"} been adapted as a movie`; // Backtick to create template literal. then inside the template literal we can bring in javascript variables and contatinate them without using +
@@ -181,36 +185,4 @@ const pagesRange = pages > 1000 ? "over a thousand" : "less than one thousand";
 pagesRange;
 console.log(`the book has ${pagesRange} pages`);
 
-/* 
-function getBooksById(...ids) {
-  return data.filter((book) => ids.includes(book.id));
-}
-
-const severalBooks = getBooksById(2, 3);
-
-function getBooksByGenre(genre) {
-  return data.filter((book) => book.genres.includes("fantasy"));
-}
-
-const fantasyBooks = getBooksByGenre("fantasy");
-console.log(fantasyBooks);
-
-function getBooksByGenreReturnById(genre) {
-  return data
-    .filter((book) => book.genres.includes(genre))
-    .map((book) => book.id);
-}
-
-const fantasyBooksById = getBooksByGenreReturnById("fantasy");
-console.log(fantasyBooksById);
-
-console.log(severalBooks);
-
-function getGenres(genres) {
-  return data.find((d) => d.genres === "humor");
-}
-
-function filterBooksByHumor() {
-  const humor = getGenres();
-  console.log(humor + " get humor");
-} */
+// Arrow functions
