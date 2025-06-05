@@ -147,7 +147,7 @@ function getBook(id) {
 
 // Destructuring the first book
 
-const book = getBook(1); // gets book by id (2 in this case)
+const book = getBook(2); // gets book by id (2 in this case)
 
 const { title, author, publicationDate, pages, genres, hasMovieAdaptation } =
   book; // stores specific data from the book we got by id
@@ -198,3 +198,32 @@ summary;
 const pagesRange = pages > 1000 ? "over a thousand" : "less than one thousand";
 pagesRange;
 console.log(`the book has ${pagesRange} pages`);
+
+// Short circuting && operator
+
+console.log(true && "hello"); // && always returns second argument if the first argument is true
+console.log(false && "hello"); // && always returns first argument if the first agrument is false
+
+console.log(hasMovieAdaptation && "this book has a movie");
+
+// falsy value: 0, '', null, undefined. These will be always be returned in short circuits using the && operator
+console.log("string" && "second string");
+console.log(0 && "string");
+
+// Short circuting || operator
+
+//truthy value: if the first argument is true it will be returned
+console.log(true || "string");
+console.log(false || "string");
+
+console.log(book.translations.spanish);
+
+const spanishTranslation = book.translations.spanish || "Not translated";
+spanishTranslation;
+
+console.log(book.reviews.librarything.reviewsCount);
+const countWrong = book.reviews.librarything.reviewsCount || "No data"; // wrong format, returns no data even though theres data in the object if reviewscount is 0
+countWrong;
+
+const count = book.reviews.librarything.reviewsCount ?? "No data"; // knowledge coalescing, allows us to return reviewscount if its 0
+count;
