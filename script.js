@@ -173,10 +173,24 @@ const updatedBook = {
 
 updatedBook;
 
+// Arrow functions
+// Arrow function, easier way of creating the above function
+const getYear = (str, a, b) => str.split("-")[0]; // allows us to pass in multiple parameters. this is a function expression!
+
+const getYear2 = (str, a, b) => {
+  return str.split("-")[0];
+};
+console.log(getYear(publicationDate));
+
+// Create traditional func to get year, split publicationDate string and get the first part of the index
+/* function getYear(str) {
+  return str.split("-")[0];
+} */
+
 // Template literal
-const summary = `${title}, a ${pages}-page long book, was written by ${author} and published in ${
-  publicationDate.split("-")[0]
-}. The book has ${hasMovieAdaptation ? "" : "not"} been adapted as a movie`; // Backtick to create template literal. then inside the template literal we can bring in javascript variables and contatinate them without using +
+const summary = `${title}, a ${pages}-page long book, was written by ${author} and published in ${getYear(
+  publicationDate
+)}. The book has ${hasMovieAdaptation ? "" : "not"} been adapted as a movie`; // Backtick to create template literal. then inside the template literal we can bring in javascript variables and contatinate them without using +
 summary;
 
 //Ternary operator
@@ -184,5 +198,3 @@ summary;
 const pagesRange = pages > 1000 ? "over a thousand" : "less than one thousand";
 pagesRange;
 console.log(`the book has ${pagesRange} pages`);
-
-// Arrow functions
