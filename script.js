@@ -147,10 +147,17 @@ function getBook(id) {
 
 // Destructuring the first book
 
-const book = getBook(2); // gets book by id (2 in this case)
+const book = getBook(3); // gets book by id (2 in this case)
 
-const { title, author, publicationDate, pages, genres, hasMovieAdaptation } =
-  book; // stores specific data from the book we got by id
+const {
+  title,
+  author,
+  publicationDate,
+  pages,
+  genres,
+  hasMovieAdaptation,
+  reviews,
+} = book; // stores specific data from the book we got by id
 
 console.log(title, author, publicationDate, genres);
 
@@ -221,9 +228,22 @@ console.log(book.translations.spanish);
 const spanishTranslation = book.translations.spanish || "Not translated";
 spanishTranslation;
 
-console.log(book.reviews.librarything.reviewsCount);
+console.log(book.reviews.librarything?.reviewsCount ?? 0);
 const countWrong = book.reviews.librarything.reviewsCount || "No data"; // wrong format, returns no data even though theres data in the object if reviewscount is 0
 countWrong;
 
 const count = book.reviews.librarything.reviewsCount ?? "No data"; // knowledge coalescing, allows us to return reviewscount if its 0
 count;
+
+// Optional chaining
+
+function getTotalReviewCount(book) {
+  const goodreads = book.reviews?.goodreads?.reviewsCount ?? 0;
+  const librarything = book.reviews?.librarything?.reviewsCount ?? 0;
+
+  goodreads;
+  librarything;
+  return goodreads + librarything;
+}
+
+console.log(getTotalReviewCount(book));
